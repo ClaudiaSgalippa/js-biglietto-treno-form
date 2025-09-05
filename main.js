@@ -25,45 +25,32 @@ Nota:
 Se non vi sentite particolarmente creativi, questa (allegato) potrebbe essere un’implementazione da seguire per il terzo milestone. 
 Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra. 🎨 */
 
-//--STEPS--//
+//--MILESTONE 1--/
 
-//INFO BASE
-
+//--COSTANTI--//
 const ticketCost = 0.21; //Prezzo base €/km
-console.log(`Il prezzo del biglietto è di ${ticketCost}€/km`)
-
-//RICHIESTA DATI
-
-const age = prompt("Qual'è la tua età?") //Richiesta dell'età
-const km = prompt("Per quanti km vuoi viaggiare?") //Richiesta del percorrimento dei km
-console.log(`Hai ${age} anni e vuoi viaggiare per ${km}km`)
-
-//SCONTISTICHE
-
 const discountMinors = 20; //Sconto minorenni
 const discountOlders = 40; //Sconto over 65
 
-if(age <= 17) {
-    console.log(`In quanto Under 18, hai diritto allo sconto del 20%`);
-} else if(age >= 65) {
-    console.log(`In quanto Over 65, hai diritto allo sconto del 40%`);
+//--BOTTONE--//
+const calcolo = document.getElementById("calcolo").addEventListener("click", calcolaPrezzo); //Associamo l'evento al bottone
+
+//--FUNZIONE--//
+function calcolaPrezzo() {
+
+    const km = parseInt(document.getElementById("km").value); //Associamo la costante al dato dei km con il valore
+    const age = parseInt(document.getElementById("age").value); //Associamo la costante al dato dell'età con il valore
+    let price = km * ticketCost;
+
+    if (age <= 17) {
+        price = price - ((price * discountMinors) / 100);
+
+    } else if (age >= 65) {
+        price = price - ((price * discountOlders) / 100);
+
+    }
+    console.log(`Il prezzo del biglietto è di ${price.toFixed(2)}€/km`);
 }
 
-//CALCOLO DELLE SCONTISTICHE
 
-const sumDiscMinors = ((ticketCost * km) / 100) * discountMinors; //Calcolo discount Under 18
-const sumDiscOlders = ((ticketCost * km) / 100) * discountOlders; //Calcolo discount Older 65
 
-//CALCOLO DEI TOTALI PER PERSONA
-
-const sumMinors = (ticketCost * km) - sumDiscMinors; //Calcolo tot Under 18
-const sumOlders = (ticketCost * km) - sumDiscOlders; //Calcolo tot Older 65
-const sumFullPrice = (ticketCost * km); //Calcolo tot no discount
-
-if (age <= 17) {
-    console.log(`Con lo sconto applicato, il totale da pagare è ${sumMinors.toFixed(2)}€`);
-} else if ((age >= 18) && (age <64)) {
-    console.log(`Il totale da pagare è di ${sumFullPrice.toFixed(2)}€`);
-}  else {
-    console.log(`Con lo sconto applicato, il totale da pagare è ${sumOlders.toFixed(2)}€`);
-}
