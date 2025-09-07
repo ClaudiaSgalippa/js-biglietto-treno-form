@@ -25,7 +25,7 @@ Nota:
 Se non vi sentite particolarmente creativi, questa (allegato) potrebbe essere un’implementazione da seguire per il terzo milestone. 
 Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra. 🎨 */
 
-//--MILESTONE 1--/
+//--MILESTONE 1--//
 
 //--COSTANTI--//
 const ticketCost = 0.21; //Prezzo base €/km
@@ -52,4 +52,22 @@ function calcolaPrezzo() {
     console.log(`Il prezzo del biglietto è di ${price.toFixed(2)}€/km`);
 }
 
+//--MILESTONE 2--//
 
+//--FIELD NOME & COGNOME--//
+const fieldNameSurname = document.getElementById("nameSurname"); //Input
+const button = document.querySelector("calcolo"); //Selezione del bottone
+
+//--GESTIONE EVENTO BOTTONE--//
+button.addEventListener("click",
+    () => {
+        const nameValue = fieldNameSurname.value; 
+        console.log(nameValue);
+    }
+)
+
+
+//Field KM
+//Field Età (hamburger)
+
+//
