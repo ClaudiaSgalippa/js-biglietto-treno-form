@@ -70,7 +70,17 @@ const outCodeCp = document.getElementById("codeCp"); //Indichiamo dove pushare i
 const outFinalCost = document.getElementById("finalCost"); //Indichiamo dove pushare il prezzo finale
 
 //-- GENERAZIONE EVENTO --//
-ticketRequest.addEventListener("submit", (event) => {
-    event.preventDefault(); //Bloccare la trasmissione automatica delle info
+function casualNumber(min, max){ //Generazione numero casuale
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-})
+ticketRequest.addEventListener("submit", (event) => {
+    let priceTicket = calcolaPrezzo(parseFloat(inKm.value), inAge); //Variabile della funzione
+    outName.innerHTML = inName.value; //Riporto del nome
+    //outTypo.innerHTML = ? //Riporto del tipo di biglietto (età)
+    outCarriage.innerHTML = casualNumber (1,15); //Generazione random di una carrozza
+    outCodeCp.innerHTML = casualNumer (10000, 99999); //Generazione random di un codice CP
+    //outFinalCost.innerHTML = ? //Riporto del prezzo finale
+    event.preventDefault(); //Bloccare la trasmissione automatica delle info
+});
+
