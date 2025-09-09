@@ -54,17 +54,17 @@ function calcolaPrezzo() {
 
 //--MILESTONE 2--//
 
-//--FIELD NOME & COGNOME--//
-const fieldNameSurname = document.getElementById("nameSurname"); //Input
-const button = document.querySelector("calcolo"); //Selezione del bottone
-
-//--GESTIONE EVENTO BOTTONE--//
-button.addEventListener("click",
-    () => {
-        const nameValue = fieldNameSurname.value; 
-        console.log(nameValue);
-    }
-)
+////--FIELD NOME & COGNOME--//
+//const fieldNameSurname = document.getElementById("nameSurname"); //Input
+//const button = document.querySelector("calcolo"); //Selezione del bottone
+//
+////--GESTIONE EVENTO BOTTONE--//
+//button.addEventListener("click",
+//    () => {
+//        const nameValue = fieldNameSurname.value; 
+//        console.log(nameValue);
+//    }
+//)
 
 
 //Field KM
