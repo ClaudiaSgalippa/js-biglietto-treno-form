@@ -9,14 +9,18 @@
 <body>
     <div id="firtstContainer">
         <h1>Calcola il prezzo del tuo biglietto</h1>
-        <div id="requests">
+        <div action="#" id="requests">
             <span>Nome e Cognome</span>
             <input id="nameSurname" type="text" placeholder="Nome e Cognome">
+
             <span>Km da percorrere</span>
             <input id="km" type="number" placeholder="Per quanti km vuoi viaggiare?">
+
             <span>Età</span>
             <input id="age" type="number" placeholder="Qual'è la tua età?">
+
             <button id="calcolo">Calcola il prezzo del biglietto</button>
+
             <button id="delete">Annulla</button>
         </div>
     </div>
@@ -26,20 +30,20 @@
             <h2>Il tuo biglietto</h2>
             <h3>Dettaglio passeggeri</h3>
             <div id="row">
-                <div id="name">
-
+                <div id="nameOnTicket">
+                    <span id="outName"></span>
                 </div>
-                <div id="offer">
-
+                <div id="typology">
+                    <span id="outTypo"></span>
                 </div>
                 <div id="carriage">
-
+                    <span id="outCarriage"></span>
                 </div>
-                <div id="codecp">
-
+                <div id="codeCp">
+                    <span id="outCodeCp"></span>
                 </div>
-                <div id="cost">
-
+                <div id="finalCost">
+                    <span id="outFinalCost"></span>
                 </div>
             </div>
         </div>

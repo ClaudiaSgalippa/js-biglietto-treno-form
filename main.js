@@ -25,17 +25,17 @@ Nota:
 Se non vi sentite particolarmente creativi, questa (allegato) potrebbe essere un’implementazione da seguire per il terzo milestone. 
 Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra. 🎨 */
 
-//--MILESTONE 1--//
+//-- MILESTONE 1--//
 
-//--COSTANTI--//
+//-- COSTANTI --//
 const ticketCost = 0.21; //Prezzo base €/km
 const discountMinors = 20; //Sconto minorenni
 const discountOlders = 40; //Sconto over 65
 
-//--BOTTONE--//
+//-- BOTTONE --//
 const calcolo = document.getElementById("calcolo").addEventListener("click", calcolaPrezzo); //Associamo l'evento al bottone
 
-//--FUNZIONE--//
+//-- FUNZIONE --//
 function calcolaPrezzo() {
 
     const km = parseInt(document.getElementById("km").value); //Associamo la costante al dato dei km con il valore
@@ -52,22 +52,25 @@ function calcolaPrezzo() {
     console.log(`Il prezzo del biglietto è di ${price.toFixed(2)}€/km`);
 }
 
-//--MILESTONE 2--//
+//-- MILESTONE 2 --//
 
-////--FIELD NOME & COGNOME--//
-//const fieldNameSurname = document.getElementById("nameSurname"); //Input
-//const button = document.querySelector("calcolo"); //Selezione del bottone
-//
-////--GESTIONE EVENTO BOTTONE--//
-//button.addEventListener("click",
-//    () => {
-//        const nameValue = fieldNameSurname.value; 
-//        console.log(nameValue);
-//    }
-//)
+//-- REALIZZAZIONE FORM IN&OUT --//
+const inName = document.getElementById("nameSurname"); //Indichiamo da dove prelevare il nome
+const inKm = document.getElementById("km"); //Indichiamo da dove prelevare il kilometraggio
+const inAge = document.getElementById("age"); //Indichiamo da dove prelevare l'età
 
+const ticketRequest = document.querySelector("#requests"); //Indichiamo a quale form dobbiamo fare riferimento
+const buttonCalc = document.getElementById("calcolo"); //Colleghiamo il bottone di generazione del biglietto alla sua funzione
+const buttonReset = document.getElementById("delete"); //Colleghiamo il bottone di cancellazione del form alla sua funzione
 
-//Field KM
-//Field Età (hamburger)
+const outName = document.getElementById("nameOnTicket"); //Indichiamo dove pushare l'elemento del nome
+const outTypo = document.getElementById("typology"); //Indichiamo dove pushare la tipologia del biglietto
+const outCarriage = document.getElementById("carriage"); //Indichiamo dove pushare la carrozza
+const outCodeCp = document.getElementById("codeCp"); //Indichiamo dove pushare il codice CP
+const outFinalCost = document.getElementById("finalCost"); //Indichiamo dove pushare il prezzo finale
 
-//
+//-- GENERAZIONE EVENTO --//
+ticketRequest.addEventListener("submit", (event) => {
+    event.preventDefault(); //Bloccare la trasmissione automatica delle info
+
+})
