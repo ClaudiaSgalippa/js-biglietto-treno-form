@@ -25,106 +25,65 @@ Nota:
 Se non vi sentite particolarmente creativi, questa (allegato) potrebbe essere un’implementazione da seguire per il terzo milestone. 
 Potete scegliere di implementare una soluzione completamente diversa oppure simile, ma in ogni caso cercate di farla vostra. 🎨 */
 
-//-- MILESTONE 1--//
+//-- MILESTONES 1 & 2--//
 
 //-- FUNZIONE & VARIABILI --//
+const calcolaPrezzo = document.getElementById("calcolo");
 
-function calcolaPrezzo (valueKm, valueAge) {
+calcolaPrezzo.addEventListener("click", () => { //Generazione dell'evento al click
+
+    let inKm = document.getElementById("km").value; //Input kilometraggio
+    let inAge = document.getElementById("age").value; //Input età
 
     const costBase = 0.21; //Variazione del prezzo base €/km
-    let option = parseInt(valueAge.value); //Conversione da stringa a valore numerico
 
-    const withoutDiscount = (costBase * valueKm); //Variabile senza variazione di discount (base)
+    let fullPrice = (inKm * costBase); //Variabile senza variazione di discount (base)
 
-    let finalPrice = 0; //Settaggio variabile senza info numeriche
-    let typoTicket = ""; //Settaggio variabile senza info scritte
+    let discountPrice; //Settaggio variabile senza info numeriche
+    let typoTicket; //Settaggio variabile senza info scritte
 
-    if (option === minors) { //Settaggio per impostazione Burger Menu
-        finalPrice = withoutDiscount * 0.8; //Impostazione discount per minorenni
+    //Settaggio per impostazione Burger Menu
+    if (inAge === minors) { 
         typoTicket = "ScontoMinorenni"; //Impostazione tipologia di ticket
+        discountPrice = 0.20; //Impostazione discount per minorenni
 
-    } else if (option === over) {
-        finalPrice = withoutDiscount * 0.6; //Impostazione discount per over 65
+    } else if (inAge === over) {
         typoTicket = "ScontoOver-65"; //Impostazione tipologia di ticket
-
-    } else if (option === major) {
-        finalPrice = withoutDiscount; //Impostazione senza sconti
+        discountPrice = 0.4; //Impostazione discount per over 65
+        
+    } else if (inAge === major) {
         typoTicket = "Standard"; //Impostazione tipologia di ticket
-
-    } return {
-        price: finalPrice.toFixed(2), //Formattazione per massimo 2 decimali
-        typology: typoTicket
+        discountPrice = 0; //Impostazione senza sconti
+        
     }
-}
 
-//-- MILESTONE 2 --//
+    let finalPrice = fullPrice - (fullPrice * discountPrice); //Calcolo dello sconto sul prezzo intero
+    let totalFinalPrice = finalPrice.toFixed(2); //Formattazione per massimo 2 decimali
+    
+    document.getElementById("promo").innerHTML = typoTicket; //Output tipologia di sconto
+    document.getElementById("finalCost").innerHTML = totalFinalPrice + " €"; //Output del prezzo finale
+    document.getElementById("nameOnTicket").innerHTML = document.getElementById("nameSurname").value //Output dei dati anagrafici
 
-//-- REALIZZAZIONE FORM IN&OUT --//
-const inName = document.getElementById("nameSurname"); //Indichiamo da dove prelevare il nome
-const inKm = document.getElementById("km"); //Indichiamo da dove prelevare il kilometraggio
-const inAge = document.getElementById("age"); //Indichiamo da dove prelevare l'età
+    let randomCarriage = Mathfloor(Math.random() * 15); //Generazione random del numero della carrozza
+    document.getElementById("carriage").innerHTML = randomCarriage; //Output numero carrozza
 
-const ticketRequest = document.querySelector("#requests"); //Indichiamo a quale form dobbiamo fare riferimento
-const buttonCalc = document.getElementById("calcolo"); //Colleghiamo il bottone di generazione del biglietto alla sua funzione
-const buttonReset = document.getElementById("delete"); //Colleghiamo il bottone di cancellazione del form alla sua funzione
+    let randomCodeCp = Mathfloor(Math.random() * 999999); //Generazione random di un codice CP
+    document.getElementById("codeCp").innerHTML = randomCodeCp; //Output del codice CP
 
-const outName = document.getElementById("nameOnTicket"); //Indichiamo dove pushare l'elemento del nome
-const outTypo = document.getElementById("typology"); //Indichiamo dove pushare la tipologia del biglietto
-const outCarriage = document.getElementById("carriage"); //Indichiamo dove pushare la carrozza
-const outCodeCp = document.getElementById("codeCp"); //Indichiamo dove pushare il codice CP
-const outFinalCost = document.getElementById("finalCost"); //Indichiamo dove pushare il prezzo finale
-
-//-- GENERAZIONE EVENTO DI COMPILAZIONE FORM --//
-function casualNumber(min, max){ //Generazione numero casuale
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-ticketRequest.addEventListener("submit", (event) => {
-    let priceTicket = calcolaPrezzo(parseFloat(inKm.value), inAge); //Variabile della funzione
-    outName.innerHTML = inName.value; //Riporto del nome
-    outTypo.innerHTML = priceTicket.typology; //Riporto del tipo di biglietto per età
-    outCarriage.innerHTML = casualNumber (1,15); //Generazione random di una carrozza
-    outCodeCp.innerHTML = casualNumer (10000, 99999); //Generazione random di un codice CP
-    outFinalCost.innerHTML = priceTicket.price + "€"; //Riporto del prezzo finale
-    event.preventDefault(); //Bloccare la trasmissione automatica delle info
 });
 
-//-- GENERAIONE DI EVENTO DI CANCELLAZIONE DEL FORM --//
+//-- SETTAGGIO PULSANTE DI CANCELLAZIONE DEL FORM --//
+const buttonReset = document.getElementById("Annulla"); //Generazione dell'evento al click
 buttonReset.addEventListener("click", () => {
-    ticketRequest.reset();
-    outName.innerHTML = "";
-    outTypo.innerHTML = "";
-    outCarriage.innerHTML = "";
-    outCodeCp.innerHTML = "";
-    outFinalCost.innerHTML = "";
+    document.getElementById("nameSurname").value = "";
+    document.getElementById("km").value = "";
+    document.getElementById("promo").innerHTML = "";
+    document.getElementById("carriage").innerHTML = "";
+    document.getElementById("codeCp").innerHTML = "";
+    document.getElementById("finalCost").innerHTML = "00.0 €";
 });
+
+document.getElementById("finalCost").innerHTML = "00.0 €";
 
 //-- MILESTONE 3 --//
-//-- cit. "Return to Masadora!" aka Return tu index.html --//
-
-// CODICE LAVORATO PRIMA DI ELABORARE IN TOTO LA RICHIESTA
-//-- VARIABILI --//
-//const discountMinors = 20; //Sconto minorenni //COSTANTE RIELABORATA PER ADATTAMENTO ALL'IMPOSTAZIONE BURGER
-//const discountOlders = 40; //Sconto over 65 //COSTANTE RIELABORATA PER ADATTAMENTO ALL'IMPOSTAZIONE BURGER
-
-//-- BOTTONE --//
-//const calcolo = document.getElementById("calcolo").addEventListener("click", calcolaPrezzo); //Associamo l'evento al bottone //COSTANTE RIELABORATA PER ADATTAMENTO ALL'IMPOSTAZIONE BURGER
-
-//-- FUNZIONE --//
-//function calcolaPrezzo() { //FUNZIONE RIELABORATA PER ADATTAMENTO ALL'IMPOSTAZIONE BURGER
-//
-//    const km = parseInt(document.getElementById("km").value); //Associamo la costante al dato dei km con il valore
-//    const age = parseInt(document.getElementById("age").value); //Associamo la costante al dato dell'età con il valore
-//    let price = km * ticketCost;
-//
-//    if (age <= 17) {
-//        price = price - ((price * discountMinors) / 100);
-//
-//    } else if (age >= 65) {
-//        price = price - ((price * discountOlders) / 100);
-//
-//    }
-//    console.log(`Il prezzo del biglietto è di ${price.toFixed(2)}€/km`);
-//}
-
-
+//-- cit. "Return to Masadora!" aka return tu index.html --//
